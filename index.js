@@ -53,7 +53,8 @@ let query = "Dúvida";
 let filtered_arr = [];
 for(let i = 0; i<contatos.length;i++){
     if (contatos[i].assunto == query){
-        filtered_arr.push(contatos[i]);
+        filtered_arr.push(contatos[i].mensagem);
     }
 }
 console.log(filtered_arr)
+
