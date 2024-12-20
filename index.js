@@ -48,13 +48,17 @@ let contatos = [
     { nome: "Henrique", email: "henrique@email.com", assunto: "Suporte Técnico", mensagem: "A senha não é reconhecida ao logar." },
     { nome: "Érica", email: "erica@email.com", assunto: "Dúvida", mensagem: "Como faço para alterar meu endereço?" }
   ];
- 
-let query = "Dúvida";
-let filtered_arr = [];
-for(let i = 0; i<contatos.length;i++){
-    if (contatos[i].assunto == query){
-        filtered_arr.push(contatos[i].mensagem);
-    }
-}
-console.log(filtered_arr)
 
+//ex.1
+function array_filter(arr,query) {
+    let filtered_arr = [];
+    for(let i = 0; i<arr.length;i++){
+    if (arr[i].assunto == query){
+        filtered_arr.push(arr[i].mensagem);
+    }
+    }
+    return filtered_arr;
+}
+console.log(array_filter(contatos,"Dúvida"));
+console.log(array_filter(contatos,"Sugestão"));
+console.log(array_filter(contatos,"Suporte Técnico"));
