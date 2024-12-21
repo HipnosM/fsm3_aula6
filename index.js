@@ -47,18 +47,39 @@ let contatos = [
     { nome: "Ana Clara", email: "ana.clara@email.com", assunto: "Sugestão", mensagem: "Poderiam oferecer tutoriais em vídeo." },
     { nome: "Henrique", email: "henrique@email.com", assunto: "Suporte Técnico", mensagem: "A senha não é reconhecida ao logar." },
     { nome: "Érica", email: "erica@email.com", assunto: "Dúvida", mensagem: "Como faço para alterar meu endereço?" }
-  ];
+];
 
 //ex.1
-function array_filter(arr,query) {
-    let filtered_arr = [];
-    for(let i = 0; i<arr.length;i++){
-    if (arr[i].assunto == query){
-        filtered_arr.push(arr[i].mensagem);
+// filtrar as mensagens  tipo de assunto
+function array_filter(arr) {
+    let filtered_arr_duvidas = [[], []];
+    let filtered_arr_sugestoes = [[], []];
+    let filtered_arr_suporte = [[], []];
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].assunto == "Dúvida") {
+            filtered_arr_duvidas[0].push(arr[i]);
+            filtered_arr_duvidas[1].push(arr[i].mensagem);
+        } else if (arr[i].assunto == 'Sugestão') {
+            filtered_arr_sugestoes[0].push(arr[i]);
+            filtered_arr_sugestoes[1].push(arr[i].mensagem)
+        } else {
+            filtered_arr_suporte[0].push(arr[i]);
+            filtered_arr_suporte[1].push(arr[i].mensagem);
+        }
     }
-    }
-    return filtered_arr;
+    return [filtered_arr_duvidas, filtered_arr_sugestoes, filtered_arr_suporte];
 }
-console.log(array_filter(contatos,"Dúvida"));
-console.log(array_filter(contatos,"Sugestão"));
-console.log(array_filter(contatos,"Suporte Técnico"));
+//ex.1
+const contatosClassificados = array_filter(contatos);
+
+//ex.2
+console.log(`mensagens Dúvidas: ${contatosClassificados[0][1]}`);
+console.log(`mensagens Sugestões: ${contatosClassificados[1][1]}`);
+console.log(`mensagens Suporte Técnico: ${contatosClassificados[2][1]}`);
+
+
+//ex.3
+console.log(`Quantidade mensagens Dúvidas: ${contatosClassificados[0][1].length}`);
+console.log(`Quantidade mensagens Sugestões: ${contatosClassificados[1][1].length}`);
+console.log(`Quantidade mensagens Suporte Técnicos: ${contatosClassificados[2][1].length}`);
